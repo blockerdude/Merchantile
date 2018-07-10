@@ -2,11 +2,25 @@
 :host {
   .container {
     display: flex;
-    flex-direction: row;
-  }
-  .even {
     flex-direction: column;
-    flex-wrap: nowrap;
+
+    .even {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    .odd {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      // margin-left: 104px;
+      // margin-top: -60px;
+    }
+
+    app-hexagon {
+      //margin: 5px;
+    }
   }
+
 
 }

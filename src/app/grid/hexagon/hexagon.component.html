@@ -1,6 +1,9 @@
 <div class="hexagon hexagon2" (click)="clicked()">
   <div class="hexagon-in1">
-    <div class="hexagon-in2" [style.background-image]="imageString">
+    <div class="hexagon-in2"
+        [style.background-image]="imageString"
+        [style.width.px]="width"
+        [style.height.px]="height">
     </div>
   </div>
 </div>
