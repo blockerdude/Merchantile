@@ -1,0 +1,12 @@
+
+:host {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  .even {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+}
