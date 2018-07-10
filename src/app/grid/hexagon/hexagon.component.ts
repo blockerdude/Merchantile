@@ -11,7 +11,7 @@ export class HexagonComponent implements OnInit {
 
   ngOnInit() {
     // this.imageString = 'url(\'./../../../../bird.jpg\')';
-    this.imageString = 'url(\'src/assets/bird.jpg\')';
+    this.imageString = 'url(/assets/bird.jpg)';
   }
 
   clicked() {
