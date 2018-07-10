@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HexagonComponent } from './hexagon/hexagon.component';
 import { HexgridComponent } from './hexgrid/hexgrid.component';
@@ -8,6 +9,7 @@ import { HexgridComponent } from './hexgrid/hexgrid.component';
     HexgridComponent
   ],
   imports: [
+    BrowserModule
   ],
   exports: [
     HexagonComponent,

@@ -1,12 +1,18 @@
-<div class="container">
-  <div class="even">
-    <app-hexagon></app-hexagon>
-    <app-hexagon></app-hexagon>
-  </div>
-  <div class="odd"
-    [style.margin-top.px]="oddMarginTop"
-    [style.margin-left.px]="oddMarginLeft">
-    <app-hexagon></app-hexagon>
-    <app-hexagon></app-hexagon>
+<div class="container"
+  [style.margin-top.px]="containerOffset">
+  <div *ngFor="let i of numberRows">
+      <div class="even"
+        [style.margin-top.px]="marginTop">
+          <div *ngFor="let i of numberHexPerRow">
+            <app-hexagon></app-hexagon>
+          </div>
+       </div>
+       <div class="odd"
+         [style.margin-top.px]="marginTop"
+         [style.margin-left.px]="oddMarginLeft">
+         <div *ngFor="let i of numberHexPerRow">
+           <app-hexagon></app-hexagon>
+         </div>
+       </div>
   </div>
 </div>
