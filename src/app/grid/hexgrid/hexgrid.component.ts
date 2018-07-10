@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HexgridComponent implements OnInit {
 
+  readonly size = 120;
   width: number;
   height: number;
   oddMarginLeft: number;
@@ -17,9 +18,9 @@ export class HexgridComponent implements OnInit {
 
 
   ngOnInit() {
-    const size = 120;
-    this.width =  Math.sqrt(3) * size;
-    this.height = size * 2;
+    // TODO: move calculations to a service?
+    this.width =  Math.sqrt(3) * this.size;
+    this.height = this.size * 2;
     this.oddMarginLeft = this.width / 2;
     this.marginTop = -1 * this.height / 4;
     this.containerOffset = -1 * this.marginTop;

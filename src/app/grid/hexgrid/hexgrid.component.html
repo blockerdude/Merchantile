@@ -1,17 +1,17 @@
 <div class="container"
   [style.margin-top.px]="containerOffset">
-  <div *ngFor="let i of numberRows">
+  <div *ngFor="let i of numberRows; let row = index">
       <div class="even"
         [style.margin-top.px]="marginTop">
-          <div *ngFor="let i of numberHexPerRow">
-            <app-hexagon></app-hexagon>
+          <div *ngFor="let i of numberHexPerRow; let col = index">
+            <app-hexagon [size]="size" [rowCord]=row [colCord]=col></app-hexagon>
           </div>
        </div>
        <div class="odd"
          [style.margin-top.px]="marginTop"
          [style.margin-left.px]="oddMarginLeft">
-         <div *ngFor="let i of numberHexPerRow">
-           <app-hexagon></app-hexagon>
+         <div *ngFor="let i of numberHexPerRow; let col = index">
+            <app-hexagon [size]="size" [rowCord]= "row + 1" [colCord]=col></app-hexagon>
          </div>
        </div>
   </div>
