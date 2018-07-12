@@ -1,3 +1,4 @@
+import { DragScrollModule } from 'ngx-drag-scroll';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HexagonComponent } from './hexagon/hexagon.component';
@@ -9,7 +10,8 @@ import { HexgridComponent } from './hexgrid/hexgrid.component';
     HexgridComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragScrollModule
   ],
   exports: [
     HexagonComponent,
