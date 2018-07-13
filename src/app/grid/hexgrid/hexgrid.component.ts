@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HexgridComponent implements OnInit {
 
-  readonly size = 200;
+  readonly size = 120;
   width: number;
   height: number;
   oddMarginLeft: number;

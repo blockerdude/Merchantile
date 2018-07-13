@@ -15,7 +15,8 @@ import { HexgridComponent } from './hexgrid/hexgrid.component';
   ],
   exports: [
     HexagonComponent,
-    HexgridComponent
+    HexgridComponent,
+    DragScrollModule
   ],
   providers: []
 })
