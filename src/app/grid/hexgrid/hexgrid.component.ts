@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HexgridComponent implements OnInit {
 
-  readonly size = 120;
+  readonly size = 60;
   width: number;
   height: number;
   oddMarginLeft: number;
@@ -29,7 +29,7 @@ export class HexgridComponent implements OnInit {
     // TODO: The following is a to allow for the rows to be incremented by 2 so the coords are correct.
     // Need to find a way to do the for loop better while preserving the css functionality.
     // Maybe can use conditional classes on (row % 2 === 0) and use !important to override things for even vs odd.
-    this.numberRows = [0, 2, 4, 6, 8];
+    this.numberRows = [0, 2, 4, 6, 8, 10, 12, 14];
 
   }
 
