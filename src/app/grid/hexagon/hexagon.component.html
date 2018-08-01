@@ -2,9 +2,20 @@
 <div class="hexagon" (click)="clicked()">
   <div class="hexagon-in1">
     <div class="hexagon-in2"
+        [contextMenu]="basicMenu"
         [style.background-image]="imageString"
         [style.width.px]="width"
         [style.height.px]="height">
     </div>
   </div>
 </div>
+
+<context-menu>
+  <ng-template contextMenuItem (execute)="showMessage('Hi')">
+    Say hi!
+  </ng-template>
+  <ng-template contextMenuItem divider="true"></ng-template>
+  <ng-template contextMenuItem let-item (execute)="showMessage('bye')">
+    Bye, {{item?.name}}
+  </ng-template>
+</context-menu>

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ContextMenuComponent, ContextMenuService } from '../../../../node_modules/ngx-contextmenu';
 
 @Component({
   selector: 'app-hexagon',
@@ -11,9 +12,15 @@ export class HexagonComponent implements OnInit {
   width: number;
   height: number;
 
+  @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
   @Input() size: number;
   @Input() rowCord: number;
   @Input() colCord: number;
+
+  // Option
+  @Input() contextMenu: ContextMenuComponent;
+
+  constructor(private contextMenuService: ContextMenuService) {}
 
   ngOnInit() {
     // this.imageString = 'url(\'./../../../../bird.jpg\')';
@@ -24,5 +31,20 @@ export class HexagonComponent implements OnInit {
 
   clicked() {
     console.log('', this.colCord + ', ' + this.rowCord);
+  }
+
+  showMessage = (text: string): void => {
+    console.log(text);
+  }
+
+  public onContextMenu = ($event: MouseEvent, item: any): void => {
+    this.contextMenuService.show.next({
+      // Optional - if unspecified, all context menu components will open
+      contextMenu: this.contextMenu,
+      event: $event,
+      item: item,
+    });
+    $event.preventDefault();
+    $event.stopPropagation();
   }
 }
