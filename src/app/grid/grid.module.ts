@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HexagonComponent } from './hexagon/hexagon.component';
 import { HexgridComponent } from './hexgrid/hexgrid.component';
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,11 @@ import { HexgridComponent } from './hexgrid/hexgrid.component';
   ],
   imports: [
     BrowserModule,
-    DragScrollModule
+    DragScrollModule,
+    ContextMenuModule.forRoot({
+      useBootstrap4: true,
+      autoFocus: true,
+    }),
   ],
   exports: [
     HexagonComponent,
