@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  overflow-y: hidden;
+  margin: 0px;
+
+
+  context-menu-content {
+    // TODO: this is where css changes can go to make the context menu better
+    // NOTE: the padding/margin left should always be the same absolute value
+
+    .ngx-contextmenu {
+      background: white;
+      min-width: 150px;
+      opacity: .85;
+
+        li {
+          list-style: none;
+        }
+
+        .dropdown-divider {
+          border-bottom: 3px solid black;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          margin-left: -1em;
+        }
+
+        .dropdown-menu {
+          padding-left: 1em;
+          border: 2px solid black;
+        }
+
+    }
+
+
+  }
+
+
+}
+
