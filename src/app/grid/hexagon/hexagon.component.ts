@@ -17,8 +17,8 @@ export class HexagonComponent implements OnInit {
   @Input() rowCord: number;
   @Input() colCord: number;
 
-  // Option
-  @Input() contextMenu: ContextMenuComponent;
+  // TODO: can use own type for contextMenuActions (has click, enabled, visible, divider, etc etc)
+  public contextMenuActions: any[];
 
   constructor(private contextMenuService: ContextMenuService) {}
 
@@ -27,24 +27,38 @@ export class HexagonComponent implements OnInit {
     this.imageString = 'url(/assets/bird.jpg)';
     this.width = Math.sqrt(3) * this.size;
     this.height = this.size * 2;
+
+    this.contextMenuActions = [
+      {
+        enabled: () => true,
+        visible: true,
+        displayName: 'row cord: ' + this.rowCord
+      },
+      {
+        divider: true,
+        visible: true,
+      },
+      {
+        enabled: () => this.colCord % 2 === 0,
+        visible: true,
+        displayName: 'col cord: ' + this.colCord
+      },
+    ];
   }
 
   clicked() {
     console.log('', this.colCord + ', ' + this.rowCord);
   }
 
-  showMessage = (text: string): void => {
-    console.log(text);
+  showMessage = (action: any): void => {
+    if (action.displayName === 'new item') {
+      this.contextMenuActions = this.contextMenuActions.filter(x => x.displayName !== 'new item');
+    } else {
+      this.contextMenuActions = this.contextMenuActions.concat({enabled: () => true,
+        visible: true,
+        displayName: 'new item'});
+    }
+
   }
 
-  public onContextMenu = ($event: MouseEvent, item: any): void => {
-    this.contextMenuService.show.next({
-      // Optional - if unspecified, all context menu components will open
-      contextMenu: this.contextMenu,
-      event: $event,
-      item: item,
-    });
-    $event.preventDefault();
-    $event.stopPropagation();
-  }
 }
