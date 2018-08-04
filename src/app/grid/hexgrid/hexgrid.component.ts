@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 
 @Component({
   selector: 'app-hexgrid',
@@ -15,6 +16,7 @@ export class HexgridComponent implements OnInit {
   containerOffset: number;
   numberHexPerRow: Array<number>;
   numberRows: Array<number>;
+  contextMenu: ContextMenuComponent;
 
 
   ngOnInit() {
