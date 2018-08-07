@@ -9,6 +9,7 @@ import { ContextMenuComponent, ContextMenuService } from '../../../../node_modul
 export class HexagonComponent implements OnInit {
 
   imageString: string;
+  overlayImageString: string;
   width: number;
   height: number;
 
@@ -24,7 +25,10 @@ export class HexagonComponent implements OnInit {
 
   ngOnInit() {
     // this.imageString = 'url(\'./../../../../bird.jpg\')';
-    this.imageString = 'url(/assets/bird.jpg)';
+    this.imageString = 'url(/assets/bird.jpg)'; // , url(/assets/building.png)';
+    if (this.colCord % 2 === 0 ) {
+      this.overlayImageString = 'url(/assets/building.png)';
+    }
     this.width = Math.sqrt(3) * this.size;
     this.height = this.size * 2;
 
