@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 
 @Component({
   selector: 'app-hexgrid',
   templateUrl: './hexgrid.component.html',
-  styleUrls: ['./hexgrid.component.scss']
+  styleUrls: ['./hexgrid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class HexgridComponent implements OnInit {
 
