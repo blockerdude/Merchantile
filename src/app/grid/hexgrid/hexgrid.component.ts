@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 
 @Component({
   selector: 'app-hexgrid',
   templateUrl: './hexgrid.component.html',
-  styleUrls: ['./hexgrid.component.scss']
+  styleUrls: ['./hexgrid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class HexgridComponent implements OnInit {
 
@@ -27,7 +28,7 @@ export class HexgridComponent implements OnInit {
     this.oddMarginLeft = this.width / 2;
     this.marginTop = -1 * this.height / 4;
     this.containerOffset = -1 * this.marginTop;
-    this.numberHexPerRow = new Array(26);
+    this.numberHexPerRow = new Array(25);
     // TODO: The following is a to allow for the rows to be incremented by 2 so the coords are correct.
     // Need to find a way to do the for loop better while preserving the css functionality.
     // Maybe can use conditional classes on (row % 2 === 0) and use !important to override things for even vs odd.
