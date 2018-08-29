@@ -1,0 +1,27 @@
+
+:host {
+
+  .game-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+ }
+
+  .example-panel {
+    background-color: tomato;
+    display: flex;
+    flex-basis: 20em;
+    flex-grow: 0;
+    flex-shrink: 0;
+ }
+
+  app-hexgrid {
+    background-color: darkblue;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100vh;
+    width: 100vw;
+ }
+
+}
