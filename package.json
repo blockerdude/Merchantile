@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@ngxs/devtools-plugin": "^3.2.0",
+    "@ngxs/store": "^3.2.0",
     "core-js": "^2.5.4",
     "ngx-contextmenu": "^5.0.2",
     "ngx-drag-scroll": "^2.0.0-beta.3",
