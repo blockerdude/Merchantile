@@ -1,3 +1,4 @@
+import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { IncrementTurn } from './actions/incrementTurn';
@@ -9,7 +10,9 @@ import { IncrementTurn } from './actions/incrementTurn';
   name: 'ExampleModelName',
   defaults: {
     gameName: 'Test Game Name',
-    turnNumber: 10
+    turnNumber: 10,
+    hexagonSize: 60,
+    hexGrid: null
   }
 })
 
@@ -28,6 +31,15 @@ export class AppState {
     ctx.setState({
       ...state,
       turnNumber: state.turnNumber + 1
+    });
+  }
+
+  @Action(SetHexGrid)
+  SetHexGrid(ctx: StateContext<AppStateModel>, action: SetHexGrid) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      hexGrid: action.gridToSet
     });
   }
 
