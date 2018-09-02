@@ -5,6 +5,8 @@ import { Store, Select } from '@ngxs/store';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { AppState } from '../../state/app.state';
+import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
+import { Tile } from '../../models/tile.enum';
 
 @Component({
   selector: 'app-hexgrid',
@@ -42,10 +44,24 @@ export class HexgridComponent implements OnInit {
     this.myStyle =  { 'margin-right': this.extraMarginRight + 'px', 'margin-bottom': this.extraMarginBottom + 'px'};
 
     this.store.selectOnce(AppState).subscribe((state: AppStateModel) => this.hexgrid = state.hexGrid);
-
     this.numberHexRows = new Array(this.hexgrid.length);
     this.numberHexPerRow = new Array(this.hexgrid[0].length);
-    console.log(this.hexgrid);
+
+
+    // Example serialization/deserialization of the app state.
+    // TODO: Create action to load in an entire game state
+    let stateToSave: AppStateModel;
+    this.store.selectOnce(AppState).subscribe((state: AppStateModel) => stateToSave = state);
+    let jsonConvert: JsonConvert = new JsonConvert();
+    jsonConvert.operationMode = OperationMode.DISABLE; // print some debug data
+    jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
+    jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
+
+    const savedState: any = jsonConvert.serialize(stateToSave);
+    console.log(savedState);
+
+    let restoredState: AppStateModel = jsonConvert.deserialize(savedState, AppStateModel);
+    console.log(restoredState);
   }
 
 }
