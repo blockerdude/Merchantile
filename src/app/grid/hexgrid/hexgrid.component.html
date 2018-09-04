@@ -1,23 +1,20 @@
 <script src="ng-drag-scroll.js"></script>
 <drag-scroll [scrollbar-hidden]="true"  [ngStyle]="myStyle">
   <div class="container" [style.margin-top.px]="containerOffset">
-    <div *ngFor="let row of numberRows;">
-        <div class="even"
+    <div *ngFor="let i of numberHexRows; let row = index">
+        <div *ngIf="row %2 === 0" class="even"
           [style.margin-top.px]="marginTop">
-            <div *ngFor="let i of numberHexPerRow; let col = index">
-              <app-hexagon [size]="size" [rowCord]="row" [colCord]=col></app-hexagon>
+            <div *ngFor="let j of numberHexPerRow; let col = index">
+              <app-hexagon [hexagon]="hexgrid[row][col]"></app-hexagon>
             </div>
         </div>
-        <div class="odd"
+        <div *ngIf="row %2 === 1" class="odd"
           [style.margin-top.px]="marginTop"
           [style.margin-left.px]="oddMarginLeft">
-            <div *ngFor="let i of numberHexPerRow; let col = index">
-              <app-hexagon [size]="size" [rowCord]= "row + 1" [colCord]=col></app-hexagon>
+            <div *ngFor="let k of numberHexPerRow; let col = index">
+              <app-hexagon [hexagon]="hexgrid[row][col]"></app-hexagon>
             </div>
         </div>
     </div>
   </div>
 </drag-scroll>
-
-
-<!--  [style.margin-right.px]="extraMarginRight" [style.margin-bottom.px]="extraMarginBottom" -->
