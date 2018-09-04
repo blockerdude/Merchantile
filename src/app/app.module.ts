@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GridModule } from './grid/grid.module';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
   imports: [
     BrowserModule,
     GridModule,
+    HttpClientModule,
     NgxsModule.forRoot([
       AppState
     ]),
