@@ -1,8 +1,9 @@
+import { ImageProviderService } from './../../services/image-provider.service';
 import { AppStateModel } from './../../state/app.state.model';
 import { Hexagon } from './../../models/hexagon';
 import { AppState } from './../../state/app.state';
 import { IncrementTurn } from './../../state/actions/incrementTurn';
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
@@ -15,7 +16,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class HexagonComponent implements OnInit {
 
-  imageString: string;
+  tileBackground: string;
   overlayImageString: string;
   size: number;
   width: number;
@@ -29,11 +30,11 @@ export class HexagonComponent implements OnInit {
   // TODO: can use own type for contextMenuActions (has click, enabled, visible, divider, etc etc)
   public contextMenuActions: any[];
 
-  constructor(private changeDetectorRef: ChangeDetectorRef,
-              private store: Store) {}
+  constructor(private store: Store,
+              private imageProvider: ImageProviderService) {}
 
   ngOnInit() {
-    this.imageString = 'url(/assets/bird.jpg)';
+    this.tileBackground = this.imageProvider.getTileBackground(this.hexagon.tile);
     this.store.selectOnce(AppState).subscribe((state: AppStateModel) => this.size = state.hexagonSize);
     if (this.hexagon.col % 2 === 0 ) {
     }
