@@ -28,7 +28,6 @@ export class AppComponent implements OnInit{
     jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
 
     this.http.get('./assets/savedFile.txt').subscribe(data => {
-       console.log('initializing state');
        const restoredState: AppStateModel = jsonConvert.deserialize(data, AppStateModel);
        this.store.dispatch(new SetGameState(restoredState));
     });
