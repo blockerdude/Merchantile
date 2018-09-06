@@ -1,11 +1,12 @@
-<div class="hexagon" (click)="clicked()">
-  <div class="hexagon-in1">
-    <div class="hexagon-in2"
+<div class="hexagonRotateLeft" (click)="clicked()">
+  <div class="hexagonRotateRight">
+    <div class="tile"
         [contextMenu]="basicMenu"
         [style.background-image]="tileBackground"
         [style.width.px]="width"
         [style.height.px]="height">
-        <div class="inner"
+        <div class="tint" [style.background]="tintString"></div>
+        <div class="overlay"
           [style.background-image]="overlayImageString"
           [style.margin-top.px]="height/4"
           [style.margin-left.px]="width/4"
