@@ -1,20 +1,20 @@
 :host {
 
-  .hexagon {
+  .hexagonRotateLeft {
     cursor: pointer;
     overflow: hidden;
     transform: rotate(120deg);
     visibility: hidden;
   }
 
-  .hexagon-in1 {
+  .hexagonRotateRight {
     height: 100%;
     overflow: hidden;
     transform: rotate(-60deg);
     width: 100%;
   }
 
-  .hexagon-in2 {
+  .tile {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,12 +25,28 @@
     width: 100%;
   }
 
-  .inner {
+  .tint {
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .overlay {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
     width: 100%;
+    z-index: 1;
+  }
+
+  .border {
+    // border-style: solid;
+    // border-width: 3px;
+    // border-color: black;
   }
 
 }

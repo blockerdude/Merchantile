@@ -18,6 +18,7 @@ export class HexagonComponent implements OnInit {
 
   tileBackground: string;
   overlayImageString: string;
+  tintString;
   size: number;
   width: number;
   height: number;
@@ -35,6 +36,7 @@ export class HexagonComponent implements OnInit {
 
   ngOnInit() {
     this.tileBackground = this.imageProvider.getTileBackground(this.hexagon.tile);
+    this.tintString = 'rgba(0, 255, 255, .25)';
     this.store.selectOnce(AppState).subscribe((state: AppStateModel) => this.size = state.hexagonSize);
     if (this.hexagon.col % 2 === 0 ) {
     }
