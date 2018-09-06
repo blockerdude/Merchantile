@@ -9,10 +9,10 @@ import { Tile } from '../models/tile.enum';
 })
 export class ImageProviderService {
 
-  imageDictionary: {};
+  tileImageDictionary: {};
 
   constructor() {
-    this.imageDictionary = {
+    this.tileImageDictionary = {
       [Tile.Forest]: 'url(/assets/forest.png)',
       [Tile.Plains]: 'url(/assets/plains.jpg)',
       [Tile.Mountains]: 'url(/assets/mountain.png)',
@@ -22,8 +22,8 @@ export class ImageProviderService {
   }
 
   getTileBackground = (tile: Tile): string => {
-    if (this.imageDictionary[tile]) {
-      return this.imageDictionary[tile];
+    if (this.tileImageDictionary[tile]) {
+      return this.tileImageDictionary[tile];
     } else {
       return 'url(/assets/bird.jpg)';
     }
