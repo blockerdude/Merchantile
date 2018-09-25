@@ -1,0 +1,75 @@
+﻿{
+  "gameName": "Test Game Name",
+  "turnNumber": 25,
+  "hexagonSize": 60,
+  "hexGrid": [
+    [
+      {
+        "row": 10,
+        "col": 10,
+        "tile": 2
+      },
+      {
+        "row": 10,
+        "col": 11,
+        "tile": 2
+      },
+      {
+        "row": 10,
+        "col": 12,
+        "tile": 1
+      }
+    ],
+    [
+      {
+        "row": 11,
+        "col": 10,
+        "tile": 2
+      },
+      {
+        "row": 11,
+        "col": 11,
+        "tile": 1
+      },
+      {
+        "row": 11,
+        "col": 12,
+        "tile": 0
+      }
+    ],
+    [
+      {
+        "row": 12,
+        "col": 10,
+        "tile": 0
+      },
+      {
+        "row": 12,
+        "col": 11,
+        "tile": 4
+      },
+      {
+        "row": 12,
+        "col": 12,
+        "tile": 1
+      }
+    ],
+    [
+      {
+        "row": 13,
+        "col": 10,
+        "tile": 3
+      },
+      {
+        "row": 13,
+        "col": 11,
+        "tile": 3
+      },
+      {
+        "row": 13,
+        "col": 12,
+        "tile": 1
+      }
+    ]
+  ]
+}

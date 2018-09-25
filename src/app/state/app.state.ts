@@ -13,7 +13,8 @@ import { IncrementTurn } from './actions/incrementTurn';
     gameName: 'Test Game Name',
     turnNumber: 10,
     hexagonSize: 40,
-    hexGrid: null
+    hexGrid: null,
+    players: null
   }
 })
 

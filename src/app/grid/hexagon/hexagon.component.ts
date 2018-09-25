@@ -18,7 +18,7 @@ export class HexagonComponent implements OnInit {
 
   tileBackground: string;
   overlayImageString: string;
-  tintString;
+  tintString: string;
   size: number;
   width: number;
   height: number;

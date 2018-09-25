@@ -1,0 +1,19 @@
+import { Controller } from './controller';
+import {JsonObject, JsonProperty} from 'json2typescript';
+
+/*
+  Defines the data comprising a hex zone, a defined area on the grid
+*/
+@JsonObject('Zone')
+export class Zone {
+
+  // hexes: []
+
+  // TODO: Think about moving this property under the controller object
+  @JsonProperty('tintColorString', String)
+  tintColorString: string;
+
+  @JsonProperty('controller', Controller)
+  controller: Controller;
+
+}
