@@ -15,7 +15,7 @@ import { SetGameState } from './state/actions/setGameState';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   constructor(private store: Store,
               private http: HttpClient) {}
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
     jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
     jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
 
-    this.http.get('./assets/savedFile.txt').subscribe(data => {
+    this.http.get('./assets/savedFile.json').subscribe(data => {
        const restoredState: AppStateModel = jsonConvert.deserialize(data, AppStateModel);
        this.store.dispatch(new SetGameState(restoredState));
     });

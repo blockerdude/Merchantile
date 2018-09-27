@@ -12,8 +12,10 @@ import { IncrementTurn } from './actions/incrementTurn';
   defaults: {
     gameName: 'Test Game Name',
     turnNumber: 10,
-    hexagonSize: 40,
-    hexGrid: null
+    hexagonSize: 60,
+    hexGrid: null,
+    players: null,
+    zones: null
   }
 })
 

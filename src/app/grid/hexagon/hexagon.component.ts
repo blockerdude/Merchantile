@@ -1,3 +1,5 @@
+import { Zone } from './../../models/zone';
+import { ZoneService } from './../../services/zone.service';
 import { ImageProviderService } from './../../services/image-provider.service';
 import { AppStateModel } from './../../state/app.state.model';
 import { Hexagon } from './../../models/hexagon';
@@ -17,8 +19,9 @@ import { Observable } from 'rxjs/internal/Observable';
 export class HexagonComponent implements OnInit {
 
   tileBackground: string;
+  zone: Zone;
   overlayImageString: string;
-  tintString;
+  tintString: string;
   size: number;
   width: number;
   height: number;
@@ -32,11 +35,14 @@ export class HexagonComponent implements OnInit {
   public contextMenuActions: any[];
 
   constructor(private store: Store,
-              private imageProvider: ImageProviderService) {}
+              private imageProvider: ImageProviderService,
+              private zoneService: ZoneService) {}
 
   ngOnInit() {
+    // debugger;
+    this.zone = this.zoneService.getZone(this.hexagon.zoneId);
     this.tileBackground = this.imageProvider.getTileBackground(this.hexagon.tile);
-    this.tintString = 'rgba(0, 255, 255, .25)';
+    this.tintString = this.zone.tintColorString;
     this.store.selectOnce(AppState).subscribe((state: AppStateModel) => this.size = state.hexagonSize);
     if (this.hexagon.col % 2 === 0 ) {
     }
