@@ -15,7 +15,7 @@ import { SetGameState } from './state/actions/setGameState';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   constructor(private store: Store,
               private http: HttpClient) {}

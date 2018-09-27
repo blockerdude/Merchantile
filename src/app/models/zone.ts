@@ -7,7 +7,8 @@ import {JsonObject, JsonProperty} from 'json2typescript';
 @JsonObject('Zone')
 export class Zone {
 
-  // hexes: []
+  @JsonProperty('zoneId', Number)
+  zoneId: number;
 
   // TODO: Think about moving this property under the controller object
   @JsonProperty('tintColorString', String)

@@ -1,3 +1,4 @@
+import { Zone } from './../models/zone';
 import { Player } from './../models/player';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Hexagon } from './../models/hexagon';
@@ -22,4 +23,7 @@ export class AppStateModel {
 
   @JsonProperty('players', [Player])
   players: Player[];
+
+  @JsonProperty('zones', [Zone])
+  zones: Zone[];
 }

@@ -1,3 +1,8 @@
+import { Controller } from './../../models/controller';
+import { Zone } from './../../models/zone';
+import { ZoneService } from './../../services/zone.service';
+import { Tile } from './../../models/tile.enum';
+import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hexagon } from './../../models/hexagon';
 import { AppStateModel } from './../../state/app.state.model';
@@ -5,6 +10,7 @@ import { Store, Select } from '@ngxs/store';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { AppState } from '../../state/app.state';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-hexgrid',
@@ -30,10 +36,16 @@ export class HexgridComponent implements OnInit {
   @Select(AppState.gameState) gameState$: Observable<AppStateModel>;
 
 
-  constructor(private store: Store) {}
+  constructor(private store: Store,
+              private zoneService: ZoneService) {}
 
   ngOnInit() {
+    this.automaticCreation();
+    // this.manualCreation();
 
+  }
+
+  automaticCreation = (): void => {
     this.gameState$.subscribe((state: AppStateModel) => {
       this.size = state.hexagonSize;
 
@@ -52,7 +64,51 @@ export class HexgridComponent implements OnInit {
         this.numberHexPerRow = new Array(state.hexGrid[0].length);
       }
     });
+  }
 
+  manualCreation = (): void => {
+        // Manual game creation
+        this.size = 60;
+        this.width =  Math.sqrt(3) * this.size;
+        this.height = this.size * 2;
+        this.oddMarginLeft = this.width / 2;
+        this.extraMarginRight = -1 * Math.sqrt(3) * (this.size / 4);
+        this.extraMarginBottom = -1 * (this.size / 4);
+        this.marginTop = -1 * this.height / 4;
+        this.containerOffset = -1 * this.marginTop;
+        this.myStyle =  { 'margin-right': this.extraMarginRight + 'px', 'margin-bottom': this.extraMarginBottom + 'px'};
+        this.numberHexRows = new Array(10);
+        this.numberHexPerRow = new Array(10);
+        this.hexgrid = [];
+        for (let x = 0; x < 10; x++) {
+          this.hexgrid[x] = [];
+          for (let y = 0; y < 10; y++) {
+            this.hexgrid[x][y] = new Hexagon(x, y);
+          }
+        }
+
+        const controllerTest1: Controller = {name: 'testName1', isPlayer: true};
+        const controllerTest2: Controller = {name: 'testName2', isPlayer: true};
+        const zoneTest1: Zone = {zoneId: 1, tintColorString: 'rgba(0, 255, 255, .25)', controller: controllerTest1};
+        const zoneTest2: Zone = {zoneId: 2, tintColorString: 'rgba(255, 0, 255, .25)', controller: controllerTest2};
+
+        // let zone: Zone = this.zoneService.getZone(1);
+        // console.log(zone);
+
+        // Example serialization/deserialization of the app state.
+        let stateToSave: AppStateModel;
+        this.store.selectOnce(AppState).subscribe((state: AppStateModel) => stateToSave = state);
+        stateToSave.hexGrid = this.hexgrid;
+        stateToSave.zones = [zoneTest1, zoneTest2];
+        const jsonConvert: JsonConvert = new JsonConvert();
+        jsonConvert.operationMode = OperationMode.DISABLE; // print some debug data
+        jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
+        jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
+
+        const savedState: string = JSON.stringify(jsonConvert.serialize(stateToSave));
+        // console.log(savedState);
+        const blob = new Blob([savedState], {type: 'text/plain;charset=utf-8'});
+        FileSaver.saveAs(blob, 'savedFile.txt');
   }
 
 }
