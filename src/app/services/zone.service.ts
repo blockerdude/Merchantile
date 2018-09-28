@@ -17,7 +17,6 @@ export class ZoneService {
   constructor() {
 
     this.gameState$.subscribe((state: AppStateModel) => {
-      console.log('here');
       if (state.zones) {
         state.zones.forEach((zone: Zone) => {
           this.zoneMap[zone.zoneId] = zone;

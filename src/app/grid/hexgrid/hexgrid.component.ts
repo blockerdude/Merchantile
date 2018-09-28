@@ -35,14 +35,12 @@ export class HexgridComponent implements OnInit {
 
   @Select(AppState.gameState) gameState$: Observable<AppStateModel>;
 
-
   constructor(private store: Store,
               private zoneService: ZoneService) {}
 
   ngOnInit() {
     this.automaticCreation();
     // this.manualCreation();
-
   }
 
   automaticCreation = (): void => {
@@ -87,8 +85,8 @@ export class HexgridComponent implements OnInit {
           }
         }
 
-        const controllerTest1: Controller = {name: 'testName1', isPlayer: true};
-        const controllerTest2: Controller = {name: 'testName2', isPlayer: true};
+        const controllerTest1: Controller = {id: 1, name: 'testName1', isPlayer: true};
+        const controllerTest2: Controller = {id: 2, name: 'testName2', isPlayer: true};
         const zoneTest1: Zone = {zoneId: 1, tintColorString: 'rgba(0, 255, 255, .25)', controller: controllerTest1};
         const zoneTest2: Zone = {zoneId: 2, tintColorString: 'rgba(255, 0, 255, .25)', controller: controllerTest2};
 

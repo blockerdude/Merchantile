@@ -14,7 +14,7 @@ import { IncrementTurn } from './actions/incrementTurn';
     turnNumber: 10,
     hexagonSize: 60,
     hexGrid: null,
-    players: null,
+    controllers: null,
     zones: null
   }
 })

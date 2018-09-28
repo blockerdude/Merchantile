@@ -630,6 +630,7 @@
       "zoneId": 1,
       "tintColorString": "rgba(0, 255, 255, .25)",
       "controller": {
+        "id": 1,
         "name": "testName1",
         "isPlayer": true
       }
@@ -638,6 +639,7 @@
       "zoneId": 2,
       "tintColorString": "rgba(255, 0, 255, .25)",
       "controller": {
+        "id": 2,
         "name": "testName2",
         "isPlayer": true
       }
