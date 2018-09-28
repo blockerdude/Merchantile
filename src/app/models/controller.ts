@@ -6,6 +6,9 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 @JsonObject('Hexagon')
 export class Controller {
 
+  @JsonProperty('id', Number, false)
+  id: number;
+
   @JsonProperty('name', String)
   name: string;
 

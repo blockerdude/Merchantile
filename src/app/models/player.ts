@@ -1,12 +1,11 @@
+import { Controller } from './controller';
 import {JsonObject, JsonProperty} from 'json2typescript';
 
 /*
   Defines the data comprising a Player
 */
 @JsonObject('Player')
-export class Player {
-  @JsonProperty('name', String)
-  name: string;
+export class Player extends Controller {
 
   @JsonProperty('goldResource', Number)
   goldResource: number;

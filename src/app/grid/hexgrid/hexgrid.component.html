@@ -8,7 +8,7 @@
               <app-hexagon [hexagon]="hexgrid[row][col]"></app-hexagon>
             </div>
         </div>
-        <div *ngIf="row %2 === 1" class="odd"
+        <div *ngIf="row % 2 === 1" class="odd"
           [style.margin-top.px]="marginTop"
           [style.margin-left.px]="oddMarginLeft">
             <div *ngFor="let k of numberHexPerRow; let col = index">
