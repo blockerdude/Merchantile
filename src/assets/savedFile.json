@@ -1,6 +1,6 @@
 ﻿{
-  "gameName": "Test Game Name",
-  "turnNumber": 10,
+  "gameName": "Loaded Game Name",
+  "turnNumber": 1,
   "hexagonSize": 60,
   "hexGrid": [
     [

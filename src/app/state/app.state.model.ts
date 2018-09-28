@@ -26,4 +26,7 @@ export class AppStateModel {
 
   @JsonProperty('zones', [Zone])
   zones: Zone[];
+
+  @JsonProperty('influenceMatrix', [[Number]])
+  influenceMatrix: number[][];
 }
