@@ -1,3 +1,4 @@
+import { InfluenceService } from './../../services/influence.service';
 import { Controller } from './../../models/controller';
 import { Zone } from './../../models/zone';
 import { ZoneService } from './../../services/zone.service';
@@ -36,7 +37,8 @@ export class HexgridComponent implements OnInit {
   @Select(AppState.gameState) gameState$: Observable<AppStateModel>;
 
   constructor(private store: Store,
-              private zoneService: ZoneService) {}
+              private zoneService: ZoneService,
+              private influenceService: InfluenceService) {}
 
   ngOnInit() {
     this.automaticCreation();

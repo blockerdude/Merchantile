@@ -1,6 +1,6 @@
 ﻿{
   "gameName": "Loaded Game Name",
-  "turnNumber": 1,
+  "turnNumber": 0,
   "hexagonSize": 60,
   "hexGrid": [
     [
@@ -624,7 +624,24 @@
       }
     ]
   ],
-  "players": null,
+  "players": [
+    {
+      "id": 1,
+      "name": "testName1",
+      "isPlayer": true,
+      "goldResource": 10,
+      "woodResource": 10,
+      "oreResource": 10
+    },
+    {
+      "id": 2,
+      "name": "testName2",
+      "isPlayer": true,
+      "goldResource": 10,
+      "woodResource": 10,
+      "oreResource": 10
+    }
+  ],
   "zones": [
     {
       "zoneId": 1,
