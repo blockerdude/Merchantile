@@ -1,12 +1,10 @@
 import { Modifier } from './../models/modifier';
 import { Influence } from './../models/influence';
-import { Player } from './../models/player';
 import { AppStateModel } from './../state/app.state.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { AppState } from './../state/app.state';
 import { Injectable } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Controller } from '../models/controller';
 import { Operand } from '../models/operand.enum';
 
 @Injectable({
@@ -21,18 +19,17 @@ export class InfluenceService {
   constructor() {
 
     this.gameState$.subscribe((state: AppStateModel) => {
-      this.influenceMatrix = state.influenceMatrix;
-      console.log('in sub');
+       this.influenceMatrix = state.influenceMatrix;
     });
-    console.log('here');
+
   }
 
   /**
    * Returns the influence between a player and a controller
    * TODO: Think about having a governor class instead of controller
    */
-  getInfluenceValue = (player: Player, controller: Controller): number => {
-    return this.influenceMatrix[player.id][controller.id].calculatedValue;
+  getInfluenceValue = (playerId: number, controllerId: number): number => {
+    return this.influenceMatrix[playerId][controllerId].calculatedValue;
   }
 
   /**
@@ -41,20 +38,20 @@ export class InfluenceService {
    * TODO: Consider changing the return type to a number which is the new influence
    * TODO: Consider creating a class that bundles all resources into one object
    */
-  updateResources = (player: Player, controller: Controller, resourceAmount: number): void => {
+  updateResources = (playerId: number, controllerId: number, resourceAmount: number): void => {
     // 1) Get current influence
-    const influence = this.influenceMatrix[player.id][controller.id];
+    const influence = this.influenceMatrix[playerId][controllerId];
 
     // 2) update the amount of resources spent
      const newResourceAmount = influence.resourceCount + resourceAmount;
-     this.influenceMatrix[player.id][controller.id].resourceCount = newResourceAmount;
+     influence.resourceCount = newResourceAmount;
 
-     this.recalculateInfluence(player, controller);
+     this.recalculateInfluence(playerId, controllerId);
   }
 
-  addModifier = (player: Player, controller: Controller, modifier: Modifier): void => {
-    this.influenceMatrix[player.id][controller.id].modifiers.push(modifier);
-    this.recalculateInfluence(player, controller);
+  addModifier = (playerId: number, controllerId: number, modifier: Modifier): void => {
+    this.influenceMatrix[playerId][controllerId].modifiers.push(modifier);
+    this.recalculateInfluence(playerId, controllerId);
   }
 
   /**
@@ -62,8 +59,8 @@ export class InfluenceService {
    * The passed in modifier needs to match the original modifier explicitly, this includes the descriptor
    * TODO: should throw/log error if no modifier is found.
    */
-  removeModifier = (player: Player, controller: Controller, modifier: Modifier): void => {
-    const influence = this.influenceMatrix[player.id][controller.id];
+  removeModifier = (playerId: number, controllerId: number, modifier: Modifier): void => {
+    const influence = this.influenceMatrix[playerId][controllerId];
 
     // const modifierFound = influence.modifiers.find(mod => mod === modifier);
     // Throw error? Log issue? Something potentially wrong happened here, needs more research before implementing
@@ -71,8 +68,8 @@ export class InfluenceService {
     // Filter out every modifier that does not equal the passed in modifier.
     const modifiers = influence.modifiers.filter( mod => mod !== modifier);
 
-    this.influenceMatrix[player.id][controller.id].modifiers = modifiers;
-    this.recalculateInfluence(player, controller);
+    influence.modifiers = modifiers;
+    this.recalculateInfluence(playerId, controllerId);
   }
 
   /**
@@ -81,10 +78,10 @@ export class InfluenceService {
    * TODO: Consider having the equation constants be inputs to the game from a saved state
    * Read Google docs for equation notes
    */
-  private recalculateInfluence = (player: Player, controller: Controller): void => {
-    const influence = this.influenceMatrix[player.id][controller.id];
-    let runningTotal = 10 * ((((influence.resourceCount + 1) ** .3) - 1) / (.3));
-    this.influenceMatrix[player.id][controller.id].baseValue = runningTotal;
+  private recalculateInfluence = (playerId: number, controllerId: number): void => {
+    const influence = this.influenceMatrix[playerId][controllerId];
+    let runningTotal = 2 * ((((influence.resourceCount + 1) ** .6) - 1) / (.6));
+    this.influenceMatrix[playerId][controllerId].baseValue = runningTotal;
 
     // Iterate through all of the additive modifiers and apply them to the base value
     influence.modifiers.forEach(mod => {
@@ -100,7 +97,6 @@ export class InfluenceService {
       }
     });
 
-    // TODO: check if this updates the underlying value in the matrix, if so then change redundant uses in this class
     influence.calculatedValue = runningTotal;
   }
 }

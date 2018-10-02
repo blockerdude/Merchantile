@@ -28,6 +28,7 @@ export class AppStateModel {
   @JsonProperty('zones', [Zone])
   zones: Zone[];
 
+  // TODO: Will this work? Or will I need to use a custom converter
   @JsonProperty('influenceMatrix', [[Influence]])
-  influenceMatrix: Influence[][];
+  influenceMatrix:  Influence[][];
 }

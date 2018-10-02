@@ -41,7 +41,7 @@ export class HexgridComponent implements OnInit {
               private influenceService: InfluenceService) {}
 
   ngOnInit() {
-    this.automaticCreation();
+     this.automaticCreation();
     // this.manualCreation();
   }
 
@@ -87,10 +87,22 @@ export class HexgridComponent implements OnInit {
           }
         }
 
-        const controllerTest1: Controller = {id: 1, name: 'testName1', isPlayer: true};
-        const controllerTest2: Controller = {id: 2, name: 'testName2', isPlayer: true};
-        const zoneTest1: Zone = {zoneId: 1, tintColorString: 'rgba(0, 255, 255, .25)', controller: controllerTest1};
-        const zoneTest2: Zone = {zoneId: 2, tintColorString: 'rgba(255, 0, 255, .25)', controller: controllerTest2};
+        // const controllerTest1: Controller = {id: 1, name: 'testName1', isPlayer: true};
+        // const controllerTest2: Controller = {id: 2, name: 'testName2', isPlayer: true};
+        const zoneTest1: Zone = {zoneId: 1, tintColorString: 'rgba(0, 255, 255, .25)', controllerId: 1 };
+        const zoneTest2: Zone = {zoneId: 2, tintColorString: 'rgba(255, 0, 255, .25)', controllerId: 2 };
+
+        const influenceMatrix = [];
+        influenceMatrix[0] = [];
+        influenceMatrix[1] = [];
+        // tslint:disable-next-line:max-line-length
+        influenceMatrix[0][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description1'}] };
+        // tslint:disable-next-line:max-line-length
+        influenceMatrix[0][3] = {calculatedValue: 20, baseValue: 15, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description2'}] };
+        // tslint:disable-next-line:max-line-length
+        influenceMatrix[1][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description4'}] };
+        // tslint:disable-next-line:max-line-length
+        influenceMatrix[1][3] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description5'}] };
 
         // let zone: Zone = this.zoneService.getZone(1);
         // console.log(zone);
@@ -100,6 +112,10 @@ export class HexgridComponent implements OnInit {
         this.store.selectOnce(AppState).subscribe((state: AppStateModel) => stateToSave = state);
         stateToSave.hexGrid = this.hexgrid;
         stateToSave.zones = [zoneTest1, zoneTest2];
+        stateToSave.influenceMatrix = influenceMatrix;
+        stateToSave.turnNumber = 0;
+        stateToSave.hexagonSize = 60;
+        stateToSave.gameName = 'Manually Created Game';
         const jsonConvert: JsonConvert = new JsonConvert();
         jsonConvert.operationMode = OperationMode.DISABLE; // print some debug data
         jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.

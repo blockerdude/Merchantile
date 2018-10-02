@@ -14,7 +14,7 @@ export class Zone {
   @JsonProperty('tintColorString', String)
   tintColorString: string;
 
-  @JsonProperty('controller', Controller)
-  controller: Controller;
+  @JsonProperty('controllerId', Number)
+  controllerId: number;
 
 }
