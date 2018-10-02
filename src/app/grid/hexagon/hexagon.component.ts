@@ -44,7 +44,7 @@ export class HexagonComponent implements OnInit {
     // debugger;
     this.zone = this.zoneService.getZone(this.hexagon.zoneId);
     this.tileBackground = this.imageProvider.getTileBackground(this.hexagon.tile);
-    this.tintString = this.zone.tintColorString;
+    this.tintString = this.zone ? this.zone.tintColorString : '';
     this.store.selectOnce(AppState).subscribe((state: AppStateModel) => this.size = state.hexagonSize);
     if (this.hexagon.col % 2 === 0 ) {
     }

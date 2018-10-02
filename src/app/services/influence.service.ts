@@ -14,7 +14,7 @@ export class InfluenceService {
 
   @Select(AppState.gameState) private gameState$: Observable<AppStateModel>;
 
-  influenceMatrix: Influence[][];
+  influenceMatrix: Map<number, Map<number, Influence>>;
 
   constructor() {
 
@@ -29,6 +29,7 @@ export class InfluenceService {
    * TODO: Think about having a governor class instead of controller
    */
   getInfluenceValue = (playerId: number, controllerId: number): number => {
+    debugger;
     return this.influenceMatrix[playerId][controllerId].calculatedValue;
   }
 

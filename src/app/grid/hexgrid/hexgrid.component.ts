@@ -1,3 +1,4 @@
+import { Influence } from './../../models/influence';
 import { InfluenceService } from './../../services/influence.service';
 import { Controller } from './../../models/controller';
 import { Zone } from './../../models/zone';
@@ -41,8 +42,8 @@ export class HexgridComponent implements OnInit {
               private influenceService: InfluenceService) {}
 
   ngOnInit() {
-     this.automaticCreation();
-    // this.manualCreation();
+    // this.automaticCreation();
+     this.manualCreation();
   }
 
   automaticCreation = (): void => {
@@ -92,17 +93,32 @@ export class HexgridComponent implements OnInit {
         const zoneTest1: Zone = {zoneId: 1, tintColorString: 'rgba(0, 255, 255, .25)', controllerId: 1 };
         const zoneTest2: Zone = {zoneId: 2, tintColorString: 'rgba(255, 0, 255, .25)', controllerId: 2 };
 
-        const influenceMatrix = [];
-        influenceMatrix[0] = [];
-        influenceMatrix[1] = [];
+        const influenceMatrix: Map<number, Map<number, Influence>> = new Map<number, Map<number, Influence>>();
+        influenceMatrix.set(0, new Map<number, Influence>());
+        influenceMatrix.set(1, new Map<number, Influence>());
+
         // tslint:disable-next-line:max-line-length
-        influenceMatrix[0][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description1'}] };
+         influenceMatrix.get(0).set(2, {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description1'}]});
+
         // tslint:disable-next-line:max-line-length
-        influenceMatrix[0][3] = {calculatedValue: 20, baseValue: 15, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description2'}] };
+         influenceMatrix.get(0).set(3, {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description1'}]});
+
         // tslint:disable-next-line:max-line-length
-        influenceMatrix[1][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description4'}] };
+        influenceMatrix.get(1).set(2, {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description2'}]});
+
         // tslint:disable-next-line:max-line-length
-        influenceMatrix[1][3] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description5'}] };
+        influenceMatrix.get(1).set(3, {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description2'}]});
+
+        // influenceMatrix[0] = [];
+        // influenceMatrix[1] = [];
+        // // tslint:disable-next-line:max-line-length
+        // influenceMatrix[0][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description1'}] };
+        // // tslint:disable-next-line:max-line-length
+        // influenceMatrix[0][3] = {calculatedValue: 20, baseValue: 15, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description2'}] };
+        // // tslint:disable-next-line:max-line-length
+        // influenceMatrix[1][2] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description4'}] };
+        // // tslint:disable-next-line:max-line-length
+        // influenceMatrix[1][3] = {calculatedValue: 10, baseValue: 5, resourceCount: 10, modifiers: [{operand: 0, value: 5, description: 'test description5'}] };
 
         // let zone: Zone = this.zoneService.getZone(1);
         // console.log(zone);
@@ -121,10 +137,16 @@ export class HexgridComponent implements OnInit {
         jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
         jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
 
-        const savedState: string = JSON.stringify(jsonConvert.serialize(stateToSave));
-        // console.log(savedState);
-        const blob = new Blob([savedState], {type: 'text/plain;charset=utf-8'});
-        FileSaver.saveAs(blob, 'savedFile.txt');
+        try {
+          const savedState: string = JSON.stringify(jsonConvert.serializeObject(stateToSave));
+          // console.log(savedState);
+          const blob = new Blob([savedState], {type: 'text/plain;charset=utf-8'});
+          FileSaver.saveAs(blob, 'savedFile.txt');
+        } catch (e) {
+          debugger;
+          console.log(e);
+        }
+
   }
 
 }

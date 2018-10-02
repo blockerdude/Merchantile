@@ -1,3 +1,4 @@
+import { InfluenceConverter } from './converters/influence.converter';
 import { Controller } from './../models/controller';
 import { Zone } from './../models/zone';
 import { JsonObject, JsonProperty } from 'json2typescript';
@@ -29,6 +30,6 @@ export class AppStateModel {
   zones: Zone[];
 
   // TODO: Will this work? Or will I need to use a custom converter
-  @JsonProperty('influenceMatrix', [[Influence]])
-  influenceMatrix:  Influence[][];
+  @JsonProperty('influenceMatrix', InfluenceConverter)
+  influenceMatrix:  Map<number, Map<number, Influence>>;
 }
