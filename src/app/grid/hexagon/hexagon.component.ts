@@ -1,3 +1,4 @@
+import { InfluenceService } from './../../services/influence.service';
 import { Zone } from './../../models/zone';
 import { ZoneService } from './../../services/zone.service';
 import { ImageProviderService } from './../../services/image-provider.service';
@@ -36,7 +37,8 @@ export class HexagonComponent implements OnInit {
 
   constructor(private store: Store,
               private imageProvider: ImageProviderService,
-              private zoneService: ZoneService) {}
+              private zoneService: ZoneService,
+              private influenceService: InfluenceService) {}
 
   ngOnInit() {
     // debugger;
@@ -69,7 +71,9 @@ export class HexagonComponent implements OnInit {
   }
 
   clicked() {
-    console.log('',  this.hexagon.row + ', ' +  this.hexagon.col);
+    // console.log('',  this.hexagon.row + ', ' +  this.hexagon.col);
+    console.log(this.influenceService.getInfluenceValue(0, this.zone.controllerId));
+    this.influenceService.updateResources(0, this.zone.controllerId, 10);
   }
 
   showMessage = (action: any): void => {
