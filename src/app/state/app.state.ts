@@ -3,6 +3,7 @@ import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { IncrementTurn } from './actions/incrementTurn';
+import { SetInfluenceMatrix } from './actions/setInfluenceMatrix';
 
 /*
   Sets defaults
@@ -39,6 +40,15 @@ export class AppState {
 
 
   /**
+   * TODO: Try using a dynamic selector here. Pass in the playerID and the controller ID you want to
+   * monitor and search for that specific cell. Seems clean and may fix the need to deep copy because
+   * we are 'getting' just that item.
+   */
+  @Selector() static influenceMatrix(state: AppStateModel) {
+    return state.influenceMatrix;
+  }
+
+  /**
    * Each of the following need to have a corresponding action
    */
 
@@ -57,6 +67,15 @@ export class AppState {
     ctx.setState({
       ...state,
       hexGrid: action.gridToSet
+    });
+  }
+
+  @Action(SetInfluenceMatrix)
+  SetInfluenceMatrix(ctx: StateContext<AppStateModel>, action: SetInfluenceMatrix) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      influenceMatrix: action.matrix
     });
   }
 

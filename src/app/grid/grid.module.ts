@@ -20,8 +20,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
   ],
   exports: [
     HexagonComponent,
-    HexgridComponent,
-    DragScrollModule
+    HexgridComponent
   ],
   providers: []
 })

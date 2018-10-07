@@ -1,4 +1,3 @@
-import { Controller } from './controller';
 import {JsonObject, JsonProperty} from 'json2typescript';
 
 /*
