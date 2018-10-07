@@ -1,3 +1,4 @@
+import { InfluenceMatrix } from './../models/influenceMatrix';
 import { SetInfluenceMatrix } from './../state/actions/setInfluenceMatrix';
 import { Modifier } from './../models/modifier';
 import { Influence } from './../models/influence';
@@ -20,7 +21,9 @@ export class InfluenceService {
   constructor(private store: Store) {
 
     this.gameState$.subscribe((state: AppStateModel) => {
-       this.influenceMatrix = state.influenceMatrix;
+      if (state.influenceMatrix) {
+       this.influenceMatrix = state.influenceMatrix.matrix;
+      }
     });
 
   }
@@ -99,6 +102,6 @@ export class InfluenceService {
     });
 
     influence.calculatedValue = runningTotal;
-    this.store.dispatch(new SetInfluenceMatrix({matrix: this.influenceMatrix}));
+    this.store.dispatch(new SetInfluenceMatrix(new InfluenceMatrix(this.influenceMatrix)));
   }
 }

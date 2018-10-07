@@ -28,6 +28,22 @@ import { SetInfluenceMatrix } from './actions/setInfluenceMatrix';
 export class AppState {
 
   /**
+   * provide access to specific/commonly requested attributes
+   */
+
+  @Selector() static turnNumber(state: AppStateModel) {
+    return state.turnNumber;
+  }
+
+  @Selector() static gameState(state: AppStateModel) {
+    return state;
+  }
+
+  @Selector() static influenceMatrix(state: AppStateModel) {
+    return state.influenceMatrix;
+  }
+
+  /**
    * Each of the following need to have a corresponding action
    */
 
@@ -52,11 +68,9 @@ export class AppState {
   @Action(SetInfluenceMatrix)
   SetInfluenceMatrix(ctx: StateContext<AppStateModel>, action: SetInfluenceMatrix) {
     const state = ctx.getState();
-    let newMatrix: Influence[][] = [];
-    newMatrix = action.payload.matrix;
     ctx.setState({
       ...state,
-      influenceMatrix: (newMatrix)
+      influenceMatrix: action.matrix
     });
   }
 
@@ -67,26 +81,5 @@ export class AppState {
       ...action.gameState
     });
   }
-
-    /**
-   * provide access to specific/commonly requested attributes
-   */
-
-  // tslint:disable-next-line:member-ordering
-  @Selector() static turnNumber(state: AppStateModel) {
-    return state.turnNumber;
-  }
-
-    // tslint:disable-next-line:member-ordering
-  @Selector() static gameState(state: AppStateModel) {
-    return state;
-  }
-
-  // tslint:disable-next-line:member-ordering
-  @Selector() static influenceMatrix(state: AppStateModel) {
-    return state.influenceMatrix;
-  }
-
-
 
 }
