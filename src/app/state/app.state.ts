@@ -38,6 +38,12 @@ export class AppState {
     return state;
   }
 
+
+  /**
+   * TODO: Try using a dynamic selector here. Pass in the playerID and the controller ID you want to
+   * monitor and search for that specific cell. Seems clean and may fix the need to deep copy because
+   * we are 'getting' just that item.
+   */
   @Selector() static influenceMatrix(state: AppStateModel) {
     return state.influenceMatrix;
   }
