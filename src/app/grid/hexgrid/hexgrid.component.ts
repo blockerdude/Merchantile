@@ -109,7 +109,7 @@ export class HexgridComponent implements OnInit {
         this.store.selectOnce(AppState).subscribe((state: AppStateModel) => stateToSave = state);
         stateToSave.hexGrid = this.hexgrid;
         stateToSave.zones = [zoneTest1, zoneTest2];
-        stateToSave.influenceMatrix = new InfluenceMatrix(influenceMatrix);
+        stateToSave.influenceMatrix = influenceMatrix;
         stateToSave.turnNumber = 0;
         stateToSave.hexagonSize = 60;
         stateToSave.gameName = 'Manually Created Game';

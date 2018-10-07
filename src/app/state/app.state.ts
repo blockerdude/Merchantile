@@ -1,4 +1,3 @@
-import { Influence } from './../models/influence';
 import { SetGameState } from './actions/setGameState';
 import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
@@ -73,7 +72,6 @@ export class AppState {
       influenceMatrix: action.matrix
     });
   }
-
 
   @Action(SetGameState)
   SetGameState(ctx: StateContext<AppStateModel>, action: SetGameState) {

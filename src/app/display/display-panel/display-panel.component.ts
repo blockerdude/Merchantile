@@ -1,4 +1,5 @@
-import { InfluenceMatrix } from './../../models/influenceMatrix';
+import { AppStateModel } from './../../state/app.state.model';
+import { Influence } from './../../models/influence';
 import { IncrementTurn } from './../../state/actions/incrementTurn';
 import { Observable } from 'rxjs/internal/Observable';
 import { Store, Select } from '@ngxs/store';
@@ -19,18 +20,22 @@ export class DisplayPanelComponent implements OnInit {
   influence: number;
 
   @Select(AppState.turnNumber) turnNumber$: Observable<number>;
-  @Select(AppState.influenceMatrix) influenceMatrix$: Observable<InfluenceMatrix>;
+  @Select(AppState.influenceMatrix) influenceMatrix$: Observable<Influence[][]>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // console.log('first');
+    // this.influenceMatrix$ = this.store.select((state: AppStateModel) => state.influenceMatrix);
+  }
 
   ngOnInit() {
+    console.log('second');
     this.turnNumber$.subscribe((value: number) => {
       this.turnNumber = value;
     });
 
-    this.influenceMatrix$.subscribe((value: InfluenceMatrix) => {
+    this.influenceMatrix$.subscribe((value: Influence[][]) => {
       if (value) {
-        this.influence = value.matrix[0][2].calculatedValue;
+        this.influence = value[0][2].calculatedValue;
       }
     });
 

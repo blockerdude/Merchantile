@@ -637,64 +637,62 @@
       "controllerId": 3
     }
   ],
-  "influenceMatrix": {
-    "matrix": [
-      [
-        null,
-        null,
-        {
-          "calculatedValue": 5,
-          "baseValue": 0,
-          "resourceCount": 0,
-          "modifiers": [
-            {
-              "operand": 0,
-              "value": 5,
-              "description": "test description1"
-            }
-          ]
-        },
-        {
-          "calculatedValue": 10,
-          "baseValue": 0,
-          "resourceCount": 0,
-          "modifiers": [
-            {
-              "operand": 0,
-              "value": 10,
-              "description": "test description2"
-            }
-          ]
-        }
-      ],
-      [
-        null,
-        null,
-        {
-          "calculatedValue": 10,
-          "baseValue": 5,
-          "resourceCount": 10,
-          "modifiers": [
-            {
-              "operand": 0,
-              "value": 5,
-              "description": "test description4"
-            }
-          ]
-        },
-        {
-          "calculatedValue": 10,
-          "baseValue": 5,
-          "resourceCount": 10,
-          "modifiers": [
-            {
-              "operand": 0,
-              "value": 5,
-              "description": "test description5"
-            }
-          ]
-        }
-      ]
+  "influenceMatrix": [
+    [
+      null,
+      null,
+      {
+        "calculatedValue": 5,
+        "baseValue": 0,
+        "resourceCount": 0,
+        "modifiers": [
+          {
+            "operand": 0,
+            "value": 5,
+            "description": "test description1"
+          }
+        ]
+      },
+      {
+        "calculatedValue": 10,
+        "baseValue": 0,
+        "resourceCount": 0,
+        "modifiers": [
+          {
+            "operand": 0,
+            "value": 10,
+            "description": "test description2"
+          }
+        ]
+      }
+    ],
+    [
+      null,
+      null,
+      {
+        "calculatedValue": 10,
+        "baseValue": 5,
+        "resourceCount": 10,
+        "modifiers": [
+          {
+            "operand": 0,
+            "value": 5,
+            "description": "test description4"
+          }
+        ]
+      },
+      {
+        "calculatedValue": 10,
+        "baseValue": 5,
+        "resourceCount": 10,
+        "modifiers": [
+          {
+            "operand": 0,
+            "value": 5,
+            "description": "test description5"
+          }
+        ]
+      }
     ]
-  }
+  ]
 }
