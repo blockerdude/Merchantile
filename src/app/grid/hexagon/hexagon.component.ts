@@ -1,3 +1,4 @@
+import { MenuAction } from '../../models/menuAction';
 import { InfluenceService } from './../../services/influence.service';
 import { Zone } from './../../models/zone';
 import { ZoneService } from './../../services/zone.service';
@@ -33,7 +34,7 @@ export class HexagonComponent implements OnInit {
   @Select(AppState.turnNumber) turnNumber$: Observable<number>;
 
   // TODO: can use own type for contextMenuActions (has click, enabled, visible, divider, etc etc)
-  public contextMenuActions: any[];
+  public contextMenuActions: MenuAction[];
 
   constructor(private store: Store,
               private imageProvider: ImageProviderService,
@@ -53,17 +54,21 @@ export class HexagonComponent implements OnInit {
 
     this.contextMenuActions = [
       {
-        enabled: () => true,
-        visible: true,
+        isEnabled: true,
+        isVisible: true,
+        isDivider: false,
         displayName: 'row cord: ' + this.hexagon.row
       },
       {
-        divider: true,
-        visible: true,
+        isEnabled: false,
+        isDivider: true,
+        isVisible: true,
+        displayName: ''
       },
       {
-        enabled: () => this.hexagon.col % 2 === 0,
-        visible: true,
+        isEnabled: false,
+        isVisible: true,
+        isDivider: false,
         displayName: 'col cord: ' + this.hexagon.col
       },
     ];
@@ -77,14 +82,19 @@ export class HexagonComponent implements OnInit {
   }
 
   showMessage = (action: any): void => {
+    console.log(action);
     if (action.displayName === 'new item') {
       this.contextMenuActions = this.contextMenuActions.filter(x => x.displayName !== 'new item');
       this.overlayImageString = '';
     } else {
       this.overlayImageString = 'url(/assets/building.png)';
-      this.contextMenuActions = this.contextMenuActions.concat({enabled: () => true,
-        visible: true,
-        displayName: 'new item'});
+      this.contextMenuActions = this.contextMenuActions.concat(
+        {
+          isEnabled: true,
+          isVisible: true,
+          isDivider: false,
+          displayName: 'new item'
+        });
 
       this.store.dispatch(new IncrementTurn());
 

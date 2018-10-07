@@ -19,7 +19,7 @@
 
 <context-menu #myContextMenu>
   <ng-template *ngFor="let action of contextMenuActions" contextMenuItem let-item
-    [visible]="action.visible" [enabled]="action.enabled" [divider]="action.divider"
+    [visible]="action.isVisible" [enabled]="action.isEnabled" [divider]="action.isDivider"
     (execute)="showMessage(action)">
     {{action.displayName}}
   </ng-template>
