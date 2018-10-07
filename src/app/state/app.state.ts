@@ -1,8 +1,10 @@
+import { Influence } from './../models/influence';
 import { SetGameState } from './actions/setGameState';
 import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { IncrementTurn } from './actions/incrementTurn';
+import { SetInfluenceMatrix } from './actions/setInfluenceMatrix';
 
 /*
   Sets defaults
@@ -26,19 +28,6 @@ import { IncrementTurn } from './actions/incrementTurn';
 export class AppState {
 
   /**
-   * provide access to specific/commonly requested attributes
-   */
-
-  @Selector() static turnNumber(state: AppStateModel) {
-    return state.turnNumber;
-  }
-
-  @Selector() static gameState(state: AppStateModel) {
-    return state;
-  }
-
-
-  /**
    * Each of the following need to have a corresponding action
    */
 
@@ -60,11 +49,44 @@ export class AppState {
     });
   }
 
+  @Action(SetInfluenceMatrix)
+  SetInfluenceMatrix(ctx: StateContext<AppStateModel>, action: SetInfluenceMatrix) {
+    const state = ctx.getState();
+    let newMatrix: Influence[][] = [];
+    newMatrix = action.payload.matrix;
+    ctx.setState({
+      ...state,
+      influenceMatrix: (newMatrix)
+    });
+  }
+
+
   @Action(SetGameState)
   SetGameState(ctx: StateContext<AppStateModel>, action: SetGameState) {
     ctx.setState({
       ...action.gameState
     });
   }
+
+    /**
+   * provide access to specific/commonly requested attributes
+   */
+
+  // tslint:disable-next-line:member-ordering
+  @Selector() static turnNumber(state: AppStateModel) {
+    return state.turnNumber;
+  }
+
+    // tslint:disable-next-line:member-ordering
+  @Selector() static gameState(state: AppStateModel) {
+    return state;
+  }
+
+  // tslint:disable-next-line:member-ordering
+  @Selector() static influenceMatrix(state: AppStateModel) {
+    return state.influenceMatrix;
+  }
+
+
 
 }

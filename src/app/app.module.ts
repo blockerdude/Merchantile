@@ -1,3 +1,4 @@
+import { DisplayModule } from './display/display.module';
 import { AppState } from './state/app.state';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,11 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     GridModule,
+    DisplayModule,
     HttpClientModule,
     NgxsModule.forRoot([
       AppState

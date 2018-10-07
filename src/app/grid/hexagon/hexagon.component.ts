@@ -85,9 +85,6 @@ export class HexagonComponent implements OnInit {
       this.contextMenuActions = this.contextMenuActions.concat({enabled: () => true,
         visible: true,
         displayName: 'new item'});
-
-      this.store.dispatch(new IncrementTurn());
-
     }
 
   }

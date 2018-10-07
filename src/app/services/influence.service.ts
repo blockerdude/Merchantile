@@ -1,10 +1,11 @@
+import { SetInfluenceMatrix } from './../state/actions/setInfluenceMatrix';
 import { Modifier } from './../models/modifier';
 import { Influence } from './../models/influence';
 import { AppStateModel } from './../state/app.state.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { AppState } from './../state/app.state';
 import { Injectable } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Operand } from '../models/operand.enum';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class InfluenceService {
 
   influenceMatrix: Influence[][];
 
-  constructor() {
+  constructor(private store: Store) {
 
     this.gameState$.subscribe((state: AppStateModel) => {
        this.influenceMatrix = state.influenceMatrix;
@@ -98,5 +99,6 @@ export class InfluenceService {
     });
 
     influence.calculatedValue = runningTotal;
+    this.store.dispatch(new SetInfluenceMatrix({matrix: this.influenceMatrix}));
   }
 }

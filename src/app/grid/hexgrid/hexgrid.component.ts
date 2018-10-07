@@ -1,8 +1,6 @@
 import { InfluenceService } from './../../services/influence.service';
-import { Controller } from './../../models/controller';
 import { Zone } from './../../models/zone';
 import { ZoneService } from './../../services/zone.service';
-import { Tile } from './../../models/tile.enum';
 import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hexagon } from './../../models/hexagon';
@@ -36,9 +34,7 @@ export class HexgridComponent implements OnInit {
 
   @Select(AppState.gameState) gameState$: Observable<AppStateModel>;
 
-  constructor(private store: Store,
-              private zoneService: ZoneService,
-              private influenceService: InfluenceService) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
      this.automaticCreation();
