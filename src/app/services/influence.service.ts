@@ -1,4 +1,3 @@
-import { InfluenceMatrix } from './../models/influenceMatrix';
 import { SetInfluenceMatrix } from './../state/actions/setInfluenceMatrix';
 import { Modifier } from './../models/modifier';
 import { Influence } from './../models/influence';

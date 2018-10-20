@@ -3,7 +3,6 @@ import { Controller } from './../models/controller';
 import { Zone } from './../models/zone';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Hexagon } from './../models/hexagon';
-import { InfluenceMatrix } from '../models/influenceMatrix';
 /*
   Defines everything the game needs to know about
   TODO: Think about renaming this class/moving to the models folder

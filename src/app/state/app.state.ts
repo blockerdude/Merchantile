@@ -1,7 +1,7 @@
 import { SetGameState } from './actions/setGameState';
 import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Action, StateContext, Selector, createSelector } from '@ngxs/store';
 import { IncrementTurn } from './actions/incrementTurn';
 import { SetInfluenceMatrix } from './actions/setInfluenceMatrix';
 
@@ -38,6 +38,12 @@ export class AppState {
     return state;
   }
 
+
+  static influenceRelationship(playerId: number, controllerId: number) {
+    return createSelector([AppStateModel], (state: AppStateModel) => {
+      return state.influenceMatrix[playerId][controllerId];
+    });
+  }
 
   /**
    * TODO: Try using a dynamic selector here. Pass in the playerID and the controller ID you want to

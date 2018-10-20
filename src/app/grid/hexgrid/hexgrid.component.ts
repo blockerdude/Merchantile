@@ -10,7 +10,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { AppState } from '../../state/app.state';
 import * as FileSaver from 'file-saver';
-import { InfluenceMatrix } from 'src/app/models/influenceMatrix';
 
 @Component({
   selector: 'app-hexgrid',
