@@ -1,3 +1,4 @@
+import { ResourceBundle } from './resourceBundle';
 import { Controller } from './controller';
 import {JsonObject, JsonProperty} from 'json2typescript';
 
@@ -7,13 +8,7 @@ import {JsonObject, JsonProperty} from 'json2typescript';
 @JsonObject('Player')
 export class Player extends Controller {
 
-  @JsonProperty('goldResource', Number)
-  goldResource: number;
-
-  @JsonProperty('woodResource', Number)
-  woodResource: number;
-
-  @JsonProperty('oreResource', Number)
-  oreResource: number;
+  @JsonProperty('resources', ResourceBundle)
+  resources: ResourceBundle;
 
 }

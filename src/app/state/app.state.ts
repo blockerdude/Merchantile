@@ -1,3 +1,4 @@
+import { Controller } from './../models/controller';
 import { SetGameState } from './actions/setGameState';
 import { SetHexGrid } from './actions/setHexGrid';
 import { AppStateModel } from './app.state.model';
@@ -38,13 +39,6 @@ export class AppState {
     return state;
   }
 
-
-  static influenceRelationship(playerId: number, controllerId: number) {
-    return createSelector([AppStateModel], (state: AppStateModel) => {
-      return state.influenceMatrix[playerId][controllerId];
-    });
-  }
-
   /**
    * TODO: Try using a dynamic selector here. Pass in the playerID and the controller ID you want to
    * monitor and search for that specific cell. Seems clean and may fix the need to deep copy because
@@ -53,6 +47,20 @@ export class AppState {
   @Selector() static influenceMatrix(state: AppStateModel) {
     return state.influenceMatrix;
   }
+
+  static influenceRelationship(playerId: number, controllerId: number) {
+    return createSelector([AppStateModel], (state: AppStateModel) => {
+      return state.influenceMatrix[playerId][controllerId];
+    });
+  }
+
+  static playerResources(playerId: number) {
+    return createSelector([AppStateModel], (state: AppStateModel) => {
+      return state.controllers.find((controller: Controller) => controller.id === playerId);
+    });
+  }
+
+
 
   /**
    * Each of the following need to have a corresponding action

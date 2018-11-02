@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Store, Select } from '@ngxs/store';
+import { Component, OnInit, Input } from '@angular/core';
+import { ResourceBundle } from 'src/app/models/resourceBundle';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-resource-display',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResourceDisplayComponent implements OnInit {
 
-  constructor() { }
+  @Input() playerId: number;
+
+  @Select(AppState.playerResources(this.playerId)) resources$: Observable<ResourceBundle>;
+
+  constructor(private store: Store) { }
 
   ngOnInit() {
+    this.resources$.subscribe((value: ResourceBundle) => {
+      console.log(value);
+    });
   }
 
 }
